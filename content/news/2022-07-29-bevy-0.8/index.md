@@ -1428,7 +1428,6 @@ A huge thanks to the **X contributors** that made this release (and associated d
 - Ensure that the parent is always the expected entity (#4717)
 - Support returning data out of `with_children` (#4708)
 - Remove `EntityMut::get_unchecked` (#4547)
-
 - Diagnostics: meaningful error when graph node has wrong number of inputs (#4924)
 - Remove redundant `Size` import (#5339)
 - Export and register `Mat2`. (#5324)

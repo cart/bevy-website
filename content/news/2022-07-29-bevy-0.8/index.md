@@ -1224,6 +1224,7 @@ A huge thanks to the **X contributors** that made this release (and associated d
 - Add a `SpatialBundle` with `Visibility` and `Transform` components (#5344)'
 - Add `RegularPolygon` and `Circle` meshes (#3730)
 - Add a `SceneBundle` to spawn a scene (#2424)
+- Allow higher order systems (#4833)
 - Add global `init()` and `get()` accessors for all newtyped `TaskPools` (#2250)
 - Add reusable shader functions for transforming position/normal/tangent (#4901)
 - Add support for vertex colors (#4528)
@@ -1251,7 +1252,6 @@ A huge thanks to the **X contributors** that made this release (and associated d
 - Add comparison methods to `FilteredAccessSet` (#4211)
 - Add `Commands::new_from_entities` (#4423)
 - Add `QueryState::get_single_unchecked_manual` and its family members (#4841)
-- Allow higher order systems (#4833)
 - Add `ParallelCommands` system parameter (#4749)
 - Add methods for querying lists of entities (#4879)
 - Implement `FusedIterator` for eligible `Iterator` types (#4942)
@@ -1270,16 +1270,6 @@ A huge thanks to the **X contributors** that made this release (and associated d
 - Create a simple tool to compare traces between executions (#4628)
 - Add a tracing span for run criteria (#4709)
 - Add tracing spans for `Query::par_for_each` and its variants.  (#4711)
-- Add examples metadata in root `Cargo.toml` (#4741)
-- Add a 3d shapes example (#4613)
-- Add a fun skinned mesh stress test based on the `animated_fox` example (#4674)
-- Add a post-processing example (#4797)
-- Add an `array_texture` example (#5077)
-- Use tone mapping in `array_texture` example (#5131)
-- Adds examples demonstrating transparency for 2d, 3d and UI (#3695)
-- Add a 3d lines example (#5319)
-- Added example of creating a system from a closure (#4327)
-- Add colors to sprite stress test (#5317)
 - Add a `release_all` method on `Input` (#5011)
 - Add a `reset_all` method on `Input` (#5015)
 - Add a helper tool to build examples for wasm (#4776)
@@ -1293,40 +1283,51 @@ A huge thanks to the **X contributors** that made this release (and associated d
 - bevy_reflect: add `as_reflect` and `as_reflect_mut` methods on `Reflect` (#4350)
 - Add an `apply_or_insert` method to `ReflectResource` and `ReflectComponent` (#5201)
 - bevy_reflect: `IntoIter` for `DynamicList` and `DynamicMap` (#4108)
-- bevy_reflect: Aadded `PartialEq` to reflected `f32`s and `f64`s (#4217)
+- bevy_reflect: Add `PartialEq` to reflected `f32`s and `f64`s (#4217)
 - Create mutable versions of `TypeRegistry` methods (#4484)
 - bevy_reflect: add a `get_boxed` method to `reflect_trait` (#4120)
 - bevy_reflect: add `#[reflect(default)]` attribute for `FromReflect` (#4140)
 - bevy_reflect: add statically available type info for reflected types (#4042)
-- Add more `SAFETY` comments and lint for missing ones in `bevy_ecs` (#4835)
-- Add benches for simple run criteria (#4196)
-- Add a random access get_component benchmark (#4607)
-- Add `bevy_reflect::{List, Map, Struct}` benchmarks (#3690)
-- Add benchmarks for schedule dependency resolution (#4961)
-- Use const generics to add wider variants of our existing ECS benchmarks (#5123)
-- Add `TextureAtlas` stress test based on `many_sprites` and `sprite_sheet` examples (#5087)
 - Add an `assert_is_exclusive_system` function (#5275)
-- Add keyboard key to mouse control for `scene_viewer` example (#4411)
-- Introduce tests for `derive(WorldQuery)` (#4625)
-- Add an example to test small window sizes (#3597)
-- bevy_input: add more tests (#4522)
 - bevy_ui: add a multi-windows check for `Interaction` (we dont yet support multiple windows) (#5225)
-
-- ~~Add performance warning when running stress test examples in debug mode (#5029)~~
-- ~~Bevy release train - add a workflow to manually create a PR updating Bevy version (#3283)~~
-- ~~Add license files to all published crates (#4828)~~
-- ~~Note that changes to licensing are controversial (#4975)~~
-- ~~Add a "Question" link to the new issue selection (#5169)~~
-- ~~Add standard Bevy boilerplate to README.md (#5191)~~
-- ~~Add Clear Linux OS dependencies (#4852)~~
-- ~~Add timeout to miri job in CI (#4743)~~
-- ~~Add the license for the FiraMono font (#3589)~~
-- ~~Add alsa-lib-devel to OpenSUSE dependencies (#4635)~~
+~~- Add performance warning when running stress test examples in debug mode (#5029)~~
+~~- Bevy release train - add a workflow to manually create a PR updating Bevy version (#3283)~~
+~~- Add license files to all published crates (#4828)~~
+~~- Note that changes to licensing are controversial (#4975)~~
+~~- Add a "Question" link to the new issue selection (#5169)~~
+~~- Add standard Bevy boilerplate to README.md (#5191)~~
+~~- Add Clear Linux OS dependencies (#4852)~~
+~~- Add timeout to miri job in CI (#4743)~~
+~~- Add the license for the FiraMono font (#3589)~~
+~~- Add alsa-lib-devel to OpenSUSE dependencies (#4635)~~
+~~- Add keyboard key to mouse control for `scene_viewer` example (#4411)~~
+~~- Introduce tests for `derive(WorldQuery)` (#4625)~~
+~~- Add an example to test small window sizes (#3597)~~
+~~- bevy_input: add more tests (#4522)~~
+~~- Add `TextureAtlas` stress test based on `many_sprites` and `sprite_sheet` examples (#5087)~~
+~~- Add more `SAFETY` comments and lint for missing ones in `bevy_ecs` (#4835)~~
+~~- Add benches for simple run criteria (#4196)~~
+~~- Add a random access get_component benchmark (#4607)~~
+~~- Add `bevy_reflect::{List, Map, Struct}` benchmarks (#3690)~~
+~~- Add benchmarks for schedule dependency resolution (#4961)~~
+~~- Use const generics to add wider variants of our existing ECS benchmarks (#5123)~~
+~~- Add examples metadata in root `Cargo.toml` (#4741)~~
+~~- Add a 3d shapes example (#4613)~~
+~~- Add a fun skinned mesh stress test based on the `animated_fox` example (#4674)~~
+~~- Add a post-processing example (#4797)~~
+~~- Add an `array_texture` example (#5077)~~
+~~- Use tone mapping in `array_texture` example (#5131)~~
+~~- Adds examples demonstrating transparency for 2d, 3d and UI (#3695)~~
+~~- Add a 3d lines example (#5319)~~
+~~- Added example of creating a system from a closure (#4327)~~
+~~- Add colors to sprite stress test (#5317)~~
 
 - # Changed
 
 - Depend on Taffy (a Dioxus and Bevy-maintained fork of Stretch) (#4716)
 - Use lifetimed, type erased pointers in bevy_ecs (#3001)
+- Migrate to `encase` from `crevice` (#4339)
+- Update `wgpu` to 0.13 (#5168)
 - Pointerfication followup: Type safety and cleanup (#4621)
 - bevy_ptr works in no_std environments (#4760)
 - Fail to compile on 16-bit platforms (#4736)
@@ -1345,8 +1346,6 @@ A huge thanks to the **X contributors** that made this release (and associated d
 - Change window resolution types from tuple to `Vec2` (#5276)
 - Update time by sending frame `Instant` through a channel (#4744)
 - Split time functionality into `bevy_time` (#4187)
-- Migrate to `encase` from `crevice` (#4339)
-- Update `wgpu` to 0.13 (#5168)
 - Split mesh shader files to make the shaders more reusable (#4867)
 - Set `naga` capabilities corresponding to `wgpu` features (#4824)
 - Separate out PBR lighting, shadows, clustered forward, and utils from pbr.wgsl (#4938)
@@ -1391,7 +1390,7 @@ A huge thanks to the **X contributors** that made this release (and associated d
 - Directly copy moved `Table` components to the target location (#5056)
 - `SystemSet::before` and `SystemSet::after` now take `AsSystemLabel` (#4503)
 - Converted exclusive systems to parallel systems wherever possible (#2774)
-- Improve `QueryIter` `size_hint` hints (#4244)
+- Improve `size_hint` on `QueryIter` (#4244)
 - Improve debugging tools for change detection (#4160)
 - Make `RunOnce` a non-manual `System` impl (#3922)
 - Apply buffers in `ParamSet` (#4677)
@@ -1429,9 +1428,8 @@ A huge thanks to the **X contributors** that made this release (and associated d
 - Ensure that the parent is always the expected entity (#4717)
 - Support returning data out of `with_children` (#4708)
 - Remove `EntityMut::get_unchecked` (#4547)
-- ECS benchmarks organization (#5189)
+
 - Diagnostics: meaningful error when graph node has wrong number of inputs (#4924)
-- Cleanups in diagnostics (#3871)
 - Remove redundant `Size` import (#5339)
 - Export and register `Mat2`. (#5324)
 - Implement `Debug` for `Gamepads` (#5291)
@@ -1442,13 +1440,7 @@ A huge thanks to the **X contributors** that made this release (and associated d
 - Disable vsync for stress tests (#5187)
 - Move `get_short_name` utility method from `bevy_reflect` into `bevy_utils` (#5174)
 - Derive `Default` for enums where possible (#5158)
-- Tweak the `transparency_3d` example (#4968)
-- Only change the animation once in the `many_foxes` example (#5076)
-- Change panicking test to not run on global `TaskPool` (#4998)
 - Implement `Eq` and `PartialEq` for `MouseScrollUnit` (#5048)
-- Use the `..default()` method in examples instead of `Default::default()` (#4952)
-- Update `tests/how_to_test_systems.rs` to include using events (#4951)
-- Make it possible to disable the animation feature in the `scene_viewer` example (#4849)
 - Some cleanup for `bevy_ptr` (#4668)
 - Move float_ord from `bevy_core` to `bevy_utils` (#4189)
 - Remove unused `CountdownEvent` (#4290)
@@ -1460,106 +1452,115 @@ A huge thanks to the **X contributors** that made this release (and associated d
 - Do not impl Component for Task (#4113)
 - Remove nonexistent `WgpuResourceDiagnosticsPlugin` (#4541)
 
-- ~~Describe new delegation strategy (#4562)~~
-- ~~Public access for AnimationClip.duration (#4615)~~
-- ~~Stop labeling PRs with Needs-Triage (#4686)~~
-- ~~GitHub Actions: don't depend on patch versions (#4646)~~
-- ~~Clean up advice on glob imports in style guide (#4644)~~
-- ~~move system_param fetch struct into anonymous scope to avoid name collisions (#4100)~~
-- ~~Remind users to initialize their systems before running them (#3947)~~
-- ~~Change `gamepad.rs` tuples to normal structs (#4519)~~
-- ~~Tidy up PluginGroupBuilder by moving Plugin index retrieval to it's own function (#4446)~~
-- ~~Rename `transparent_phase` to `opaque_phase` in `wireframe.rs` (#4639)~~
-- ~~Make AnimationClip::duration return value instead of reference (#4617)~~
-- ~~Derive thiserror::Error for HexColorError (again) (#4847)~~
-- ~~shader examples wording coherence (#4810)~~
-- ~~remove unneeded msaa explicit addition from examples (#4830)~~
-- ~~Make bevy_app's optional bevy_reflect dependency actually optional (#4846)~~
-- ~~Rename Color::as_hlsa_f32 to Color::as_hsla_f32 (#4827)~~
-- ~~(ManevilleF/staging) Remove markdown dead link check (#4839)~~
-- ~~Reduce code duplication by using QueryIterationCursor in QueryIter (#4733)~~
-- ~~Change path to zld on MacOS fast build example (#4778)~~
-- ~~Doc/module style doc blocks for examples (#4438)~~
-- ~~Remove strong language from CONTRIBUTING.md (#4755)~~
-- ~~Update commented vsync code in example to use present_mode (#4926)~~
-- ~~Do not bundle the assets from wasm example in the crate (#4895)~~
-- ~~Derive default on ReportExecutionOrderAmbiguities (#4873)~~
-- ~~Update "C-Bug" label and url in CONTRIBUTING.md (#4880)~~
-- ~~Clippy improvements (#4665)~~
-- ~~Make bug template more beginner-friendly (#4652)~~
-- ~~Cargo `--timings` option has been stabilized. Update profiling.md. (#4850)~~
-- ~~Remove redundant query parameters (#4945)~~
-- ~~Recommend posting new plugins in #crates discord channel (#4956)~~
-- ~~Let the project page support GitHub's new ability to display open source licenses (#4966)~~
-- ~~Enable single-commit option for doc deployment (#5138)~~
-- ~~Remove double blank line from component docs (#5102)~~
-- ~~Default image sampler doc fix (#5047)~~
-- ~~Remove spirv-reflect from readme (#5192)~~
-- ~~remove an unused import in release (#5320)~~
-- ~~remove component and resource suffixes from reflect structs (#5219)~~
-- ~~Allow unicode license (#5337)~~
-- ~~Remove some unused dependencies (#4544)~~
-- ~~Misc dependency improvements (#4545)~~
-- ~~Decouple some dependencies (#3886)~~
-- ~~Update ndk-glue requirement from 0.5 to 0.6 (#3624)~~
-- ~~Update tracing-tracy requirement from 0.8.0 to 0.9.0 (#4786)~~
-- ~~update image to 0.24 (#4121)~~
-- ~~update xshell to 0.2 (#4789)~~
-- ~~Update gilrs to v0.9 (#4848)~~
-- ~~bevy_log: upgrade to tracing-tracy 0.10.0 (#4991)~~
-- ~~update hashbrown to 0.12 (#5035)~~
-- ~~Update `clap` to 3.2 in tools using `value_parser` (#5031)~~
-- ~~Updated `glam` to `0.21`. (#5142)~~
-- ~~Bump peter-evans/create-pull-request from 3 to 4 (#4940)~~
-- ~~Update Notify Dependency (#5396)~~
-- ~~Remove `rand` crate from dependency tree (#3992)~~
-- ~~run examples on windows (#4437)~~
-- ~~run examples in wasm in CI (#4818)~~
-- ~~Parameterize nightly toolchain in CI (#5330)~~
-- ~~CI tool usage (#3876)~~
-- ~~windows CI: use exact same command to prebuild (#5352)~~
-- ~~remove nightly from CI/bors (#5333)~~
-- ~~Improve Commands docs (#4490)~~
-- ~~Improve `touch.rs` docs (#4523)~~
-- ~~Update `axis.rs` docs in `bevy_input` (#4525)~~
-- ~~Update `system.rs` docs in `bevy_input` (#4524)~~
-- ~~document the single threaded wasm task pool (#4571)~~
-- ~~Update `input.rs` docs in `bevy_input` (#4521)~~
-- ~~Basic EntityRef and EntityMut docs (#3388)~~
-- ~~Document that AppExit can be read by Bevy apps (#4587)~~
-- ~~Update `mouse.rs` docs in `bevy_input` (#4518)~~
-- ~~Document `bevy_math` (#4591)~~
-- ~~Update `keyboard.rs` docs in `bevy_input` (#4517)~~
-- ~~Add some more documentation to `SystemParam` (#4787)~~
-- ~~Improve docs and naming for RawWindowHandle functionality (#4335)~~
-- ~~Add documentation to the WindowDescriptor struct. (#4764)~~
-- ~~Add documentation comments to `bevy_window` (#4333)~~
-- ~~Improve entity and component API docs (#4767)~~
-- ~~linux_dependencies: cleanup NixOS (#5086)~~
-- ~~Add some docs about lowspec rendering (#5091)~~
-- ~~Update `MouseMotion` and `CursorMoved` docs (#5090)~~
-- ~~Update CONTRIBUTING.md (#4962)~~
-- ~~Documenting `BufferVec`. (#4673)~~
-- ~~Improve Command(s) docs (#4994)~~
-- ~~Add documentation to `VisibleEntities` and related (#5100)~~
-- ~~docs: Add section about using Tracy for profiling (#4534)~~
-- ~~Add troubleshooting command to miri docs (#5116)~~
-- ~~Document That FloatOrd Implements Hash and Eq Too (#5228)~~
-- ~~improve documentation for macro-generated label types (#5367)~~
-- ~~Documenting `UniformBuffer`, `DynamicUniformBuffer`, `StorageBuffer` and `DynamicStorageBuffer`. (#5223)~~
-- ~~Document `Size` and `UiRect` (#5381)~~
-- ~~Fix `OwningPtr` docs (#5391)~~
-- ~~Document exotic patterns for `Command`s and `Event`s (#4840)~~
-- ~~docs: Full documentation for bevy_asset (#3536)~~
-- ~~Very minor doc formatting changes (#5287)~~
-- ~~do not check links on docs.github.com (#4578)~~
-- ~~Remove parking_lot dependency from bevy_ecs (#4543)~~
-- ~~Bump Bevy to 0.8.0-dev (#4505)~~
-- ~~Let contributors know it's okay to delete optional template sections (#4498)~~
+~~- Use the `..default()` method in examples instead of `Default::default()` (#4952)~~
+~~- Make it possible to disable the animation feature in the `scene_viewer` example (#4849)~~
+~~- Only change the animation once in the `many_foxes` example (#5076)~~
+~~- Change panicking test to not run on global `TaskPool` (#4998)~~
+~~- Tweak the `transparency_3d` example (#4968)~~
+~~- Update `tests/how_to_test_systems.rs` to include using events (#4951)~~
+~~- Cleanups in diagnostics (#3871)~~
+~~- ECS benchmarks organization (#5189)~~
+~~- Describe new delegation strategy (#4562)~~
+~~- Public access for AnimationClip.duration (#4615)~~
+~~- Stop labeling PRs with Needs-Triage (#4686)~~
+~~- GitHub Actions: don't depend on patch versions (#4646)~~
+~~- Clean up advice on glob imports in style guide (#4644)~~
+~~- move system_param fetch struct into anonymous scope to avoid name collisions (#4100)~~
+~~- Remind users to initialize their systems before running them (#3947)~~
+~~- Change `gamepad.rs` tuples to normal structs (#4519)~~
+~~- Tidy up PluginGroupBuilder by moving Plugin index retrieval to it's own function (#4446)~~
+~~- Rename `transparent_phase` to `opaque_phase` in `wireframe.rs` (#4639)~~
+~~- Make AnimationClip::duration return value instead of reference (#4617)~~
+~~- Derive thiserror::Error for HexColorError (again) (#4847)~~
+~~- shader examples wording coherence (#4810)~~
+~~- remove unneeded msaa explicit addition from examples (#4830)~~
+~~- Make bevy_app's optional bevy_reflect dependency actually optional (#4846)~~
+~~- Rename Color::as_hlsa_f32 to Color::as_hsla_f32 (#4827)~~
+~~- (ManevilleF/staging) Remove markdown dead link check (#4839)~~
+~~- Reduce code duplication by using QueryIterationCursor in QueryIter (#4733)~~
+~~- Change path to zld on MacOS fast build example (#4778)~~
+~~- Doc/module style doc blocks for examples (#4438)~~
+~~- Remove strong language from CONTRIBUTING.md (#4755)~~
+~~- Update commented vsync code in example to use present_mode (#4926)~~
+~~- Do not bundle the assets from wasm example in the crate (#4895)~~
+~~- Derive default on ReportExecutionOrderAmbiguities (#4873)~~
+~~- Update "C-Bug" label and url in CONTRIBUTING.md (#4880)~~
+~~- Clippy improvements (#4665)~~
+~~- Make bug template more beginner-friendly (#4652)~~
+~~- Cargo `--timings` option has been stabilized. Update profiling.md. (#4850)~~
+~~- Remove redundant query parameters (#4945)~~
+~~- Recommend posting new plugins in #crates discord channel (#4956)~~
+~~- Let the project page support GitHub's new ability to display open source licenses (#4966)~~
+~~- Enable single-commit option for doc deployment (#5138)~~
+~~- Remove double blank line from component docs (#5102)~~
+~~- Default image sampler doc fix (#5047)~~
+~~- Remove spirv-reflect from readme (#5192)~~
+~~- remove an unused import in release (#5320)~~
+~~- remove component and resource suffixes from reflect structs (#5219)~~
+~~- Allow unicode license (#5337)~~
+~~- Remove some unused dependencies (#4544)~~
+~~- Misc dependency improvements (#4545)~~
+~~- Decouple some dependencies (#3886)~~
+~~- Update ndk-glue requirement from 0.5 to 0.6 (#3624)~~
+~~- Update tracing-tracy requirement from 0.8.0 to 0.9.0 (#4786)~~
+~~- update image to 0.24 (#4121)~~
+~~- update xshell to 0.2 (#4789)~~
+~~- Update gilrs to v0.9 (#4848)~~
+~~- bevy_log: upgrade to tracing-tracy 0.10.0 (#4991)~~
+~~- update hashbrown to 0.12 (#5035)~~
+~~- Update `clap` to 3.2 in tools using `value_parser` (#5031)~~
+~~- Updated `glam` to `0.21`. (#5142)~~
+~~- Bump peter-evans/create-pull-request from 3 to 4 (#4940)~~
+~~- Update Notify Dependency (#5396)~~
+~~- Remove `rand` crate from dependency tree (#3992)~~
+~~- run examples on windows (#4437)~~
+~~- run examples in wasm in CI (#4818)~~
+~~- Parameterize nightly toolchain in CI (#5330)~~
+~~- CI tool usage (#3876)~~
+~~- windows CI: use exact same command to prebuild (#5352)~~
+~~- remove nightly from CI/bors (#5333)~~
+~~- Improve Commands docs (#4490)~~
+~~- Improve `touch.rs` docs (#4523)~~
+~~- Update `axis.rs` docs in `bevy_input` (#4525)~~
+~~- Update `system.rs` docs in `bevy_input` (#4524)~~
+~~- document the single threaded wasm task pool (#4571)~~
+~~- Update `input.rs` docs in `bevy_input` (#4521)~~
+~~- Basic EntityRef and EntityMut docs (#3388)~~
+~~- Document that AppExit can be read by Bevy apps (#4587)~~
+~~- Update `mouse.rs` docs in `bevy_input` (#4518)~~
+~~- Document `bevy_math` (#4591)~~
+~~- Update `keyboard.rs` docs in `bevy_input` (#4517)~~
+~~- Add some more documentation to `SystemParam` (#4787)~~
+~~- Improve docs and naming for RawWindowHandle functionality (#4335)~~
+~~- Add documentation to the WindowDescriptor struct. (#4764)~~
+~~- Add documentation comments to `bevy_window` (#4333)~~
+~~- Improve entity and component API docs (#4767)~~
+~~- linux_dependencies: cleanup NixOS (#5086)~~
+~~- Add some docs about lowspec rendering (#5091)~~
+~~- Update `MouseMotion` and `CursorMoved` docs (#5090)~~
+~~- Update CONTRIBUTING.md (#4962)~~
+~~- Documenting `BufferVec`. (#4673)~~
+~~- Improve Command(s) docs (#4994)~~
+~~- Add documentation to `VisibleEntities` and related (#5100)~~
+~~- docs: Add section about using Tracy for profiling (#4534)~~
+~~- Add troubleshooting command to miri docs (#5116)~~
+~~- Document That FloatOrd Implements Hash and Eq Too (#5228)~~
+~~- improve documentation for macro-generated label types (#5367)~~
+~~- Documenting `UniformBuffer`, `DynamicUniformBuffer`, `StorageBuffer` and `DynamicStorageBuffer`. (#5223)~~
+~~- Document `Size` and `UiRect` (#5381)~~
+~~- Fix `OwningPtr` docs (#5391)~~
+~~- Document exotic patterns for `Command`s and `Event`s (#4840)~~
+~~- docs: Full documentation for bevy_asset (#3536)~~
+~~- Very minor doc formatting changes (#5287)~~
+~~- do not check links on docs.github.com (#4578)~~
+~~- Remove parking_lot dependency from bevy_ecs (#4543)~~
+~~- Bump Bevy to 0.8.0-dev (#4505)~~
+~~- Let contributors know it's okay to delete optional template sections (#4498)~~
 
 - # Fixed
 
 - bevy_ui: keep `Color` as 4 `f32`s (#4494)
+- Fix issues with bevy on android other than the rendering (#5130)
 - Update layout/style when scale factor changes too (#4689)
 - Fix `Overflow::Hidden` so it works correctly with `scale_factor_override` (#3854)
 - Fix `bevy_ui` touch input (#4099)
@@ -1583,11 +1584,9 @@ A huge thanks to the **X contributors** that made this release (and associated d
 - Improve soundness of `CommandQueue` (#4863)
 - Fix some memory leaks detected by miri (#4959)
 - Fix Android example icon (#4076)
-- Fix issues with bevy on android other than the rendering (#5130)
 - Fix broken `WorldCell` test (#5009)
 - Bugfix `State::set` transition condition infinite loop (#4890)
-- Fix wasm examples (#4967)
-- Fix crash when using ~~Duration::MAX~~ (#4900)
+- Fix crash when using `Duration::MAX` (#4900)
 - Fix release builds: Move asserts under `#[cfg(debug_assertions)]` (#4871)
 - Fix frame count being a float (#4493)
 - Fix "unused" warnings when compiling with `render` feature but without `animation` (#4714)
@@ -1595,21 +1594,22 @@ A huge thanks to the **X contributors** that made this release (and associated d
 - Fix torus normals (#4520)
 - Add `NO_STORAGE_BUFFERS_SUPPORT` shaderdef when needed (#4949)
 
-- ~~Fixes complaints about missing docs (#4551)~~
-- ~~Fix Good-First-Issue label in  CONTRIBUTING.md (#4979)~~
-- ~~Fix typo in game_menu.rs (#4977)~~
-- ~~Fix typo in Word::get_by_id docs (#5246)~~
-- ~~Fix small typo in example name (#5217)~~
-- ~~Fix markdownlint privileges complaint (#5216)~~
-- ~~fix new clippy lints (#5160)~~
-- ~~Fix typos in bevy_reflect readme (#5134)~~
-- ~~Fix Events example link (#5126)~~
-- ~~Fix player number in example game in the ecs_guide (#5098)~~
-- ~~Fix Nix section of linux_dependencies.md (#5050)~~
-- ~~Fix redundant "have" in CONTRIBUTING (#5036)~~
-- ~~linux_dependencies: fix NixOS (#5251)~~
-- ~~fix tracy frame marker placement (after preseting *all* windows) (#4731)~~
-- ~~Fix release workflow (#4903)~~
-- ~~Fix clap for CI (#5005)~~
-- ~~Fix bevy code because of a ron deprecation (#5021)~~
-- ~~Fix resource not found error message (#5128)~~
+~~- Fix wasm examples (#4967)~~
+~~- Fixes complaints about missing docs (#4551)~~
+~~- Fix Good-First-Issue label in  CONTRIBUTING.md (#4979)~~
+~~- Fix typo in game_menu.rs (#4977)~~
+~~- Fix typo in Word::get_by_id docs (#5246)~~
+~~- Fix small typo in example name (#5217)~~
+~~- Fix markdownlint privileges complaint (#5216)~~
+~~- fix new clippy lints (#5160)~~
+~~- Fix typos in bevy_reflect readme (#5134)~~
+~~- Fix Events example link (#5126)~~
+~~- Fix player number in example game in the ecs_guide (#5098)~~
+~~- Fix Nix section of linux_dependencies.md (#5050)~~
+~~- Fix redundant "have" in CONTRIBUTING (#5036)~~
+~~- linux_dependencies: fix NixOS (#5251)~~
+~~- fix tracy frame marker placement (after preseting *all* windows) (#4731)~~
+~~- Fix release workflow (#4903)~~
+~~- Fix clap for CI (#5005)~~
+~~- Fix bevy code because of a ron deprecation (#5021)~~
+~~- Fix resource not found error message (#5128)~~
